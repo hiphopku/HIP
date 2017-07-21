@@ -10,9 +10,3 @@ It is required to install a specific software provided by Bee Beans Technologies
 It is required to install ROOT programs provided by CERN, a.k.a., the European Organization for Nuclear Research (https://root.cern.ch) in order to use the following files.
 · ClusterAlgorism.cpp (ClusterAlgorism.h)
 · ntuple.cpp
-
-## Conversion Program
-You can use csv_to_beta.C, compiling it on Terminal just like an ordinary .C file.
-For example,
-1. $ gcc csv_to_beta.C -o csv_to_beta
-2. $ ./csv_to_beta
