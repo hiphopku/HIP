@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BRoaD3 addr="192.168.10.16" tcpPort="24" udpPort="4660" Timeout="1" autoConnect="false">
+    <tab id="0" name="Sheet1">
+        <entry term="Input">
+            <id>0</id>
+            <name>IN-CH6</name>
+            <userName>INCH6_GATE</userName>
+        </entry>
+        <entry term="Input">
+            <id>2</id>
+            <name>IN-CH7</name>
+            <userName>INCH7_OR</userName>
+        </entry>
+        <entry term="PreLogic">
+            <id>0</id>
+            <name>PreLgc1</name>
+            <userName>Gate</userName>
+            <net port="0">IN-CH6</net>
+            <property> _A </property>
+        </entry>
+        <entry term="PreLogic">
+            <id>1</id>
+            <name>PreLgc2</name>
+            <userName>CH0nCH1</userName>
+            <net port="0">IN-CH6</net>
+            <net port="1">IN-CH7</net>
+            <property> _A  and  _B </property>
+        </entry>
+        <entry term="FeedBack0">
+            <id>2</id>
+            <name>FeedBack0</name>
+            <userName>FeedBack1</userName>
+        </entry>
+        <entry term="FeedBack2">
+            <id>3</id>
+            <name>FeedBack2</name>
+            <userName>FeedBack2</userName>
+        </entry>
+        <entry term="NonFnc">
+            <id>0</id>
+            <name>NonFnc1</name>
+            <net port="0">PreLgc1</net>
+        </entry>
+        <entry term="CntFnc">
+            <id>1</id>
+            <name>CntFnc0</name>
+            <userName>OneShot_24_IN</userName>
+            <net port="0">PreLgc2</net>
+            <property>Mode=0 MainCnt=24nsec SubCnt=6nsec</property>
+        </entry>
+        <entry term="DlyFnc">
+            <id>2</id>
+            <name>DlyFnc0</name>
+            <userName>Dly_0ns</userName>
+            <net port="0">FeedBack0</net>
+            <property>Delay=0ns</property>
+        </entry>
+        <entry term="CntFnc">
+            <id>3</id>
+            <name>CntFnc6</name>
+            <userName>OneShot24_FB</userName>
+            <net port="0">FeedBack2</net>
+            <property>Mode=0 MainCnt=24nsec SubCnt=5nsec</property>
+        </entry>
+        <entry term="DlyFnc">
+            <id>4</id>
+            <name>DlyFnc1</name>
+            <userName>Dly_24</userName>
+            <net port="0">PreLgc1</net>
+            <property>Delay=24ns</property>
+        </entry>
+        <entry term="PostLogic">
+            <id>0</id>
+            <name>PstLgc2</name>
+            <userName>Logic1</userName>
+            <net port="0">NonFnc1</net>
+            <net port="1">CntFnc0</net>
+            <net port="2">DlyFnc0</net>
+            <net port="3">CntFnc6</net>
+            <property>( _B  or  _C ) and  _A  and ( not   _D )</property>
+        </entry>
+        <entry term="PostLogic">
+            <id>1</id>
+            <name>PstLgc3</name>
+            <userName>and</userName>
+            <net port="0">CntFnc0</net>
+            <net port="1">DlyFnc0</net>
+            <property> _A  and  _B </property>
+        </entry>
+        <entry term="PostLogic">
+            <id>3</id>
+            <name>PstLgc8</name>
+            <userName>Logic2</userName>
+            <net port="0">DlyFnc0</net>
+            <net port="1">CntFnc6</net>
+            <net port="2">DlyFnc1</net>
+            <property> _A  and ( not  _B ) and  _C </property>
+        </entry>
+        <entry term="FeedBack">
+            <id>0</id>
+            <name>FeedBack0</name>
+            <userName>FeedBack1</userName>
+            <net port="0">PstLgc2</net>
+        </entry>
+        <entry term="FeedBack">
+            <id>2</id>
+            <name>FeedBack2</name>
+            <net port="0">PstLgc3</net>
+        </entry>
+        <entry term="MsrCnt0">
+            <id>5</id>
+            <name>MsrCnt0</name>
+            <userName>run0200</userName>
+            <net port="0">PstLgc8</net>
+            <property>Mode=1 Unit=nsec FileSave=true PATH=log</property>
+        </entry>
+        <entry term="OUT-CH3">
+            <id>6</id>
+            <name>OUT-CH3</name>
+            <userName>OUT-CH3</userName>
+            <net port="0">PstLgc8</net>
+        </entry>
+    </tab>
+    <tab id="1" name="Sheet2">
+        <entry term="Input">
+            <id>0</id>
+            <name>IN-CH0</name>
+            <userName>IN-CH0</userName>
+        </entry>
+        <entry term="Input">
+            <id>6</id>
+            <name>IN-CH1</name>
+            <userName>IN-CH1</userName>
+        </entry>
+        <entry term="PreLogic">
+            <id>0</id>
+            <name>PreLgc3</name>
+            <userName>UpperPMT</userName>
+            <net port="0">IN-CH0</net>
+            <property> _A </property>
+        </entry>
+        <entry term="FeedBack4">
+            <id>1</id>
+            <name>FeedBack4</name>
+            <userName>IdlingTime</userName>
+        </entry>
+        <entry term="FeedBack1">
+            <id>2</id>
+            <name>FeedBack1</name>
+            <userName>Coincidence</userName>
+        </entry>
+        <entry term="PreLogic">
+            <id>4</id>
+            <name>PreLgc4</name>
+            <userName>LowerPMT</userName>
+            <net port="0">IN-CH1</net>
+            <property> _A </property>
+        </entry>
+        <entry term="CntFnc">
+            <id>0</id>
+            <name>CntFnc4</name>
+            <userName>gate_250ns_I20us</userName>
+            <net port="0">FeedBack1</net>
+            <property>Mode=0 MainCnt=250nsec SubCnt=20usec</property>
+        </entry>
+        <entry term="DlyFnc">
+            <id>1</id>
+            <name>DlyFnc2</name>
+            <userName>Dly26ns</userName>
+            <net port="0">PreLgc3</net>
+            <property>Delay=26ns</property>
+        </entry>
+        <entry term="CntFnc">
+            <id>3</id>
+            <name>CntFnc1</name>
+            <userName>OS20ns_I20ms</userName>
+            <net port="0">FeedBack4</net>
+            <property>Mode=0 MainCnt=20nsec SubCnt=20msec</property>
+        </entry>
+        <entry term="CntFnc">
+            <id>4</id>
+            <name>CntFnc3</name>
+            <userName>Widen300ns_I20ms</userName>
+            <net port="0">PreLgc4</net>
+            <property>Mode=0 MainCnt=300nsec SubCnt=20msec</property>
+        </entry>
+        <entry term="CntFnc">
+            <id>6</id>
+            <name>CntFnc5</name>
+            <userName>OS_20ns_I20us</userName>
+            <net port="0">FeedBack1</net>
+            <property>Mode=0 MainCnt=20nsec SubCnt=20usec</property>
+        </entry>
+        <entry term="CntFnc">
+            <id>7</id>
+            <name>CntFnc7</name>
+            <userName>Dly154nsOS20ns</userName>
+            <net port="0">PreLgc4</net>
+            <property>Mode=2 MainCnt=154nsec SubCnt=20nsec</property>
+        </entry>
+        <entry term="PostLogic">
+            <id>0</id>
+            <name>PstLgc6</name>
+            <userName>GATE_250ns</userName>
+            <net port="0">CntFnc4</net>
+            <property> _A </property>
+        </entry>
+        <entry term="PostLogic">
+            <id>1</id>
+            <name>PstLgc0</name>
+            <userName>Total50nsDly</userName>
+            <net port="0">DlyFnc2</net>
+            <property> _A </property>
+        </entry>
+        <entry term="PostLogic">
+            <id>2</id>
+            <name>PstLgc4</name>
+            <userName>AND</userName>
+            <net port="0">CntFnc1</net>
+            <net port="1">CntFnc3</net>
+            <property> _A  and  _B </property>
+        </entry>
+        <entry term="PostLogic">
+            <id>4</id>
+            <name>PstLgc5</name>
+            <userName>OR</userName>
+            <net port="0">CntFnc5</net>
+            <net port="1">CntFnc7</net>
+            <property> _A  or  _B </property>
+        </entry>
+        <entry term="OUT-CH6">
+            <id>0</id>
+            <name>OUT-CH6</name>
+            <userName>OUCH6_GATE</userName>
+            <net port="0">PstLgc6</net>
+        </entry>
+        <entry term="FeedBack">
+            <id>2</id>
+            <name>FeedBack4</name>
+            <userName>IdlingTime</userName>
+            <net port="0">PstLgc0</net>
+        </entry>
+        <entry term="OUT-CH4">
+            <id>3</id>
+            <name>OUT-CH4</name>
+            <userName>OCH4_EAS_Tri</userName>
+            <net port="0">PstLgc4</net>
+        </entry>
+        <entry term="OUT-CH5">
+            <id>4</id>
+            <name>OUT-CH5</name>
+            <userName>OCH5_EAS_Tri</userName>
+            <net port="0">PstLgc4</net>
+        </entry>
+        <entry term="FeedBack">
+            <id>5</id>
+            <name>FeedBack1</name>
+            <userName>Coincidence</userName>
+            <net port="0">PstLgc4</net>
+        </entry>
+        <entry term="OUT-CH7">
+            <id>7</id>
+            <name>OUT-CH7</name>
+            <userName>OUTCH7_OR</userName>
+            <net port="0">PstLgc5</net>
+        </entry>
+    </tab>
+</BRoaD3>
